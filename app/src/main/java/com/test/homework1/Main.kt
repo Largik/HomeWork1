@@ -11,9 +11,40 @@ fun buy(publication: IPublication?) {
     }
 }
 
-fun User.ageCheck(){
-    if(this.age < 19){
+fun User.ageCheck() {
+    if (this.age < 19) {
         throw Exception("Error!!!! \n Пользователь ${this.name} по id(${this.id}) не старше 18 лет(${this.age})")
+    }
+}
+
+val authCallback = object : AuthCallback{
+    override fun authSuccess() {
+        println("Пользователь успешно авторизован!")
+    }
+
+    override fun authFailed() {
+        println("Пользователь не прошел авторизацию!")
+    }
+}
+
+fun updateCache(cacheCheckUpd: Boolean){
+    if(cacheCheckUpd){
+        println("Кэш обновлен!\n")
+    }else{
+        println("Кэш не был обновлен!\n")
+    }
+}
+
+inline fun auth(updateCache: (Boolean) -> Unit , user: User){
+    try{
+        user.ageCheck()
+        authCallback.authSuccess()
+        updateCache(true)
+    }
+    catch(ex: Exception){
+        authCallback.authFailed()
+        updateCache(false)
+        throw ex
     }
 }
 
@@ -57,22 +88,25 @@ fun main() {
         )
     }
     println("Список пользователей: \n")
-    users.forEach{
-        auth(::updateCache, it)
-        println(" $it\n")
+    users.forEach {
+        println(" $it")
     }
 
-    println(" Список пользователей, имеющих полный доступ:\n")
+    println("\nСписок пользователей, имеющих полный доступ:\n")
     users.filter { it.type == Type.FULL }
         .forEach {
-            println(" $it\n")
+            println(" $it")
         }
 
-    val nameUsers = users.map{ rec -> rec.name }
-    println("Список имён пользователей: \n")
-    nameUsers.forEach{
-        println(" $it\n")
+    val nameUsers = users.map { rec -> rec.name }
+    println("\nСписок имён пользователей: \n")
+    nameUsers.forEach {
+        println(" $it")
     }
-    println("Первый пользователь: ${nameUsers.firstOrNull()};\n")
+    println("\nПервый пользователь: ${nameUsers.firstOrNull()};\n")
     println("Последний пользователь: ${nameUsers.lastOrNull()}.\n")
+
+    Registration().doAction()
+    Login(user1).doAction()
+    Logout().doAction()
 }

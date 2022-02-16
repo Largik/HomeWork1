@@ -4,7 +4,7 @@ open class Book (override val price: Double, override val wordCount: Int): Abstr
     override fun getType(): String {
         var result = "Novel"
 
-        if( this.wordCount < 1001){
+        if(this.wordCount < 1001){
             result = "Flash Fiction"
         }else if(this.wordCount < 7501){
             result = "Short Story"
