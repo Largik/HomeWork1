@@ -108,5 +108,6 @@ fun main() {
 
     Registration().doAction()
     Login(user1).doAction()
+    //Login(users[3]).doAction()
     Logout().doAction()
 }
