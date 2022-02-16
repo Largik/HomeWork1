@@ -58,7 +58,7 @@ fun main() {
     }
     println("Список пользователей: \n")
     users.forEach{
-        //it.ageCheck()
+        auth(::updateCache, it)
         println(" $it\n")
     }
 
@@ -75,15 +75,4 @@ fun main() {
     }
     println("Первый пользователь: ${nameUsers.firstOrNull()};\n")
     println("Последний пользователь: ${nameUsers.lastOrNull()}.\n")
-}
-
-
-val authCallback = object : AuthCallback{
-    override fun authSuccess() {
-        println("Authorization success!")
-    }
-
-    override fun authFailed() {
-        println("Authorization failed!")
-    }
 }
