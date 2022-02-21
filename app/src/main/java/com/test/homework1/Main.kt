@@ -11,12 +11,6 @@ fun buy(publication: IPublication?) {
     }
 }
 
-fun User.ageCheck() {
-    if (this.age < 19) {
-        throw Exception("Error!!!! \n Пользователь ${this.name} по id(${this.id}) не старше 18 лет(${this.age})")
-    }
-}
-
 val authCallback = object : AuthCallback{
     override fun authSuccess() {
         println("Пользователь успешно авторизован!")
@@ -106,8 +100,7 @@ fun main() {
     println("\nПервый пользователь: ${nameUsers.firstOrNull()};\n")
     println("Последний пользователь: ${nameUsers.lastOrNull()}.\n")
 
-    Registration().doAction()
-    Login(user1).doAction()
-    //Login(users[3]).doAction()
-    Logout().doAction()
+    doAction(Action.Registration)
+    doAction(Action.Login(user1))
+    doAction(Action.Logout)
 }

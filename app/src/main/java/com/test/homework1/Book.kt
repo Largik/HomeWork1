@@ -2,15 +2,11 @@ package com.test.homework1
 
 open class Book (override val price: Double, override val wordCount: Int): AbstractPublication(){
     override fun getType(): String {
-        var result = "Novel"
-
-        if(this.wordCount < 1001){
-            result = "Flash Fiction"
-        }else if(this.wordCount < 7501){
-            result = "Short Story"
+        return when (wordCount) {
+            in 1..1000 -> "Flash Fiction"
+            in 1001..7500 -> "Short Story"
+            else -> "Novel"
         }
-
-        return result
     }
 
     override fun equals(other: Any?): Boolean {
