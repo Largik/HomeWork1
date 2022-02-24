@@ -10,10 +10,6 @@ open class Book (override val price: Double, override val wordCount: Int): Abstr
     }
 
     override fun equals(other: Any?): Boolean {
-        println("Результаты сравнения ссылок:\n" +
-                "Сравнение по ссылке \"===\": ${this === other};\n" +
-                "Сравнение методом equals(): ${super.equals(other)}.\n")
-
-        return super.equals(other)
+        return other is Book && other.price == this.price && other.wordCount == this.wordCount
     }
 }
