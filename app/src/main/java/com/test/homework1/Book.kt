@@ -10,6 +10,8 @@ open class Book (override val price: Double, override val wordCount: Int): Abstr
     }
 
     override fun equals(other: Any?): Boolean {
-        return other is Book && other.price == this.price && other.wordCount == this.wordCount
+        return other is Book &&
+                other.price == this.price &&
+                other.wordCount == this.wordCount
     }
 }

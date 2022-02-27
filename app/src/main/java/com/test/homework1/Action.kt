@@ -10,7 +10,7 @@ fun doAction(action: Action) {
     when (action) {
         is Action.Registration ->  println("Регистрация прошла успешно!\n")
         is Action.Login -> {
-            println("Auth has started.")
+            println("Пользователь вошел!\n")
             auth(::updateCache, action.user)
         }
         is Action.Logout -> println("Пользователь вышел!\n")

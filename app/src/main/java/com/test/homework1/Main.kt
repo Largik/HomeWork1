@@ -52,8 +52,8 @@ fun main() {
     val magazine = Magazine(Random.nextDouble(10.01, 500.01), Random.nextInt(50, 1400))
     magazine.formattedPrint()
 
-    book1.equals(book2)
-    book1.equals(book1)
+    println(book1.equals(book2))
+    println(book1 == book2)
 
     val bookNull: Book? = null
     buy(book1)
